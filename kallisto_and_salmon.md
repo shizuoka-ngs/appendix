@@ -47,8 +47,7 @@ $ sort -k 4 -rn salmon_output_DRR100656/quant.sf | less
 $ sort -k 4 -rn salmon_output_DRR100657/quant.sf | less
 ```
 
-以下jupyter notebookでの操作
-
+以下jupyter notebookでの操作。kallistoとカラム名が微妙に違うので留意。
 ```
 import pandas as pd
 e1 = pd.read_table('salmon_output_DRR100656/quqnt.sf')
@@ -64,4 +63,5 @@ e = pd.merge(e1, e2, on='Name')
 # DataFrameに必要なフィールドが含まれていることを確認
 e.head()
 
-`
+```
+
