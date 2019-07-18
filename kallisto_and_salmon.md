@@ -52,10 +52,10 @@ $ sort -k 4 -rn salmon_output_DRR100657/quant.sf | less
 import pandas as pd
 e1 = pd.read_table('salmon_output_DRR100656/quqnt.sf')
 e1 = e1.drop(columns=['Length', 'EffectiveLength', 'NumReads'])
-e1.columns = ['Name', 'TPM_SRR7300567']
-e2 = pd.read_table('SRR7300569のabundance.tsv')
+e1.columns = ['Name', 'TPM_DRR100656']
+e2 = pd.read_table('salmon_output_DRR100657/quqnt.sf')
 e2 = e2.drop(columns=['Length', 'EffectiveLength', 'NumReads'])
-e2.columns = ['Name', 'TPM_SRR7300569']
+e2.columns = ['Name', 'TPM_DRR100657']
 
 # 二つのデータを'target_id'で結合
 e = pd.merge(e1, e2, on='Name')
@@ -65,3 +65,15 @@ e.head()
 
 ```
 
+TPMの対数を計算しdfに追加＆散布図にプロットする
+```python
+e['log_DRR100656'] = np.log10(e['TPM_DRR100656'] + 1)
+e['log_DRR100657'] = np.log10(e['TPM_DRR100657'] + 1)
+e['diff'] = abs(e['log_DRR100656'] - e['log_DRR100657'])
+
+plt.scatter(e.log_DRR100656, e.log_DRR100657)
+plt.xlabel('DRR100657')
+plt.ylabel('DRR100656')
+```
+
+###
