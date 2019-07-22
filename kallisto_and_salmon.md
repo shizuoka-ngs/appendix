@@ -148,9 +148,8 @@ import matplotlib.pyplot as plt
 
 fig = plt.figure()
 ax2 = fig.add_subplot(1,1,1)
-ax2.scatter(x='log_DRR100656', y='log_DRR100657', label='salmon',  data=se, color='red', marker='.', alpha=0.9)
-ax2.scatter(x='log_DRR100656', y='log_DRR100657', label='kallisto', data=ke, color='blue', marker='x', alpha=0.5)
-ax2.grid(True)
+ax2.scatter(x='log_DRR100656', y='log_DRR100657', label='salmon',  data=se, color='red', marker='.', alpha=0.8)
+ax2.scatter(x='log_DRR100656', y='log_DRR100657', label='kallisto', data=ke, color='steelblue', marker='x', alpha=0.8)
 ax2.legend()
 ```
 
