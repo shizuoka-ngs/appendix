@@ -1,5 +1,8 @@
 # 発現定量化ツールsalmonによる定量とkallistoとの比較
 
+[AJACSa6](https://github.com/AJACS-training/AJACSa6/tree/master/03_bono)の
+発展課題を
+
 
 ## インストール
 
@@ -138,5 +141,16 @@ ax = sns.scatterplot(x='log_DRR100656', y='log_DRR100657', data=ke)
 
 ## kallistとsalmonの比較
 
-salmon_output_*/と*_kallisto_out/abandance.tsv
+### 散布図を重ねてプロット
+
+```
+import matplotlib.pyplot as plt
+
+fig = plt.figure()
+ax2 = fig.add_subplot(1,1,1)
+ax2.scatter(x='log_DRR100656', y='log_DRR100657', label='salmon',  data=se, color='red', marker='.', alpha=0.9)
+ax2.scatter(x='log_DRR100656', y='log_DRR100657', label='kallisto', data=ke, color='blue', marker='x', alpha=0.5)
+ax2.grid(True)
+ax2.legend()
+```
 
