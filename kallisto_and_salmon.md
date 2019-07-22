@@ -119,6 +119,23 @@ e['diff'] = abs(e['log_DRR100656'] - e['log_DRR100657'])
 ax = sns.scatterplot(x='log_DRR100656', y='log_DRR100657', data=e)
 ```
 
+kallistoのデータでも同様に
+```
+ke1 = pd.read_table("DRR100656_kallisto_out/abundance.tsv")
+ke1 = ke1.drop(columns=['length', 'eff_length', 'est_counts'])
+ke1.columns = ['Name', 'TPM_DRR100656']
+ke2 = pd.read_table("DRR100657_kallisto_out/abundance.tsv")
+ke2 = ke2.drop(columns=['length', 'eff_length', 'est_counts'])
+ke2.columns = ['Name', 'TPM_DRR100657']
+
+ke = pd.merge(ke1, ke2, on='Name')
+ke['log_DRR100656'] = np.log10(ke['TPM_DRR100656'] + 1)
+ke['log_DRR100657'] = np.log10(ke['TPM_DRR100657'] + 1)
+
+ax = sns.scatterplot(x='log_DRR100656', y='log_DRR100657', data=ke)
+```
+
+
 ## kallistとsalmonの比較
 
 salmon_output_*/と*_kallisto_out/abandance.tsv
