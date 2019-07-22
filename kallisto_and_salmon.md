@@ -135,7 +135,7 @@ ke = pd.merge(ke1, ke2, on='Name')
 ke['log_DRR100656'] = np.log10(ke['TPM_DRR100656'] + 1)
 ke['log_DRR100657'] = np.log10(ke['TPM_DRR100657'] + 1)
 
-ax = sns.scatterplot(x='log_DRR100656', y='log_DRR100657', data=ke)
+ax = sns.scatterplot(x='log_DRR100656', y='log_DRR100657', data=ke, scatter_kws={'color': 'steelblue'}, line_kws={'color': 'orange'})
 ```
 
 
