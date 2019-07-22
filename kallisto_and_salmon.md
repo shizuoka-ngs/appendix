@@ -1,5 +1,35 @@
 # 発現定量化ツールsalmonによる定量とkallistoとの比較
 
+
+## インストール
+
+作業はconda環境で行います。必要なツールは可能な限りconda installします。
+
+### minicondaインストール
+[Condaの公式サイト](https://docs.conda.io/en/latest/miniconda.html)から
+自分の環境にあったインストーラをDLしてください。
+
+### condaのコマンド
+[anaconda のコマンドリストメモ](https://qiita.com/natsuriver/items/4ae6eed5f47e34817090)
+
+### condaで環境を作る
+
+```
+$ conda create -n eg-ngs python=3.7
+$ source actibate eg-ngs
+$ conda config --add channels defaults
+$ conda config --add channels conda-forge
+$ conda config --add channels bioconda
+
+$ conda install -c bioconda sra-tools 
+$ conda install kallisto
+$ conda install salmon
+
+$ conda install jupyter jupyter_console qtconsole notebook nbconvert
+$ conda install seaborn
+
+```
+
 ※ DRR100656,DRR100657での例。このサンプルでkallistoとsalmonの定量を行い結果を比較します。
 
 ## FASTQのトリミング
@@ -8,21 +38,16 @@
 
 詳細は[AJACSa6 遺伝子発現データ解析の実際](https://github.com/AJACS-training/AJACSa6/tree/master/03_bono)で
 
+## salmonで発現定量
 
-## salmonをインストール
-
-```sql
-conda insatall salmon
-```
-
-## salmon検索用のインデックス作成
+### salmon検索用のインデックス作成
 
 ```
 $ wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_31/gencode.v31.transcripts.fa.gz
 $ salmon index -p 2 -t gencode.v31.transcripts.fa.gz -i gencode_v31
 ```
 
-## 発現定量
+### 発現定量
 
 ```
 salmon quant -p 2 -i gencode_v31 -l A --validateMappings -1 DRR100656.sra_1_val_1.fq.gz  -2 DRR100656.sra_2_val_2.fq.gz -o salmon_output_DRR100656
@@ -78,4 +103,5 @@ plt.ylabel('DRR100656')
 
 ## kallistとsalmonの比較
 
+salmon_output_*/と*_kallisto_out/abandance.tsv
 
