@@ -120,6 +120,9 @@ e['diff'] = abs(e['log_DRR100656'] - e['log_DRR100657'])
 
 ```
 ax = sns.scatterplot(x='log_DRR100656', y='log_DRR100657', data=e)
+
+# 回帰直線を重ねる場合は
+ax = sns.regplot(x='log_DRR100656', y='log_DRR100657', data=e, scatter_kws={'color': 'steelblue'}, line_kws={'color': 'orange'})
 ```
 
 kallistoのデータでも同様に
@@ -135,7 +138,7 @@ ke = pd.merge(ke1, ke2, on='Name')
 ke['log_DRR100656'] = np.log10(ke['TPM_DRR100656'] + 1)
 ke['log_DRR100657'] = np.log10(ke['TPM_DRR100657'] + 1)
 
-ax = sns.scatterplot(x='log_DRR100656', y='log_DRR100657', data=ke, scatter_kws={'color': 'steelblue'}, line_kws={'color': 'orange'})
+ax = sns.regplot(x='log_DRR100656', y='log_DRR100657', data=ke, scatter_kws={'color': 'steelblue'}, line_kws={'color': 'orange'})
 ```
 
 
